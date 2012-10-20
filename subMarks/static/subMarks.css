@@ -1,0 +1,88 @@
+section#sidebar ul {list-style-type: none; font-size:8pt; max-height:110px; overflow:auto;}
+section#sidebar h3 {margin:0px 0px 2px 0px;}
+section#sidebar h4 {font-size:11pt; margin-top:12px;}
+
+dl#projectList {font-size: 8pt; padding-right:8px}
+dl#projectList dd {color: #bbb; margin-bottom: 4px; overflow:auto}
+dl#projectList dd a {display: inline-block; float: right}
+
+div.bookmark
+{
+    border: 1px solid #666; 
+    margin: 0px 18px 6px 6px; 
+    padding: 4px; 
+    border-radius: 6px;
+}
+
+div.bookmark h3
+{
+    font-size:8pt;
+    /*color:#336699;*/
+    text-transform:lowercase;
+    margin-bottom:6px
+}
+
+ul.bookmark_actions
+{
+    text-align:right;
+    list-style-type:none;
+    font-size:9pt;
+    margin:12px 0px 5px 0px;
+}
+
+ul.bookmark_actions>li
+{
+    display:inline-block;
+    margin:0 2px;
+    /*float:left;*/
+}
+
+ul.bookmark_actions>li:first-child
+{
+    float:left;
+}
+
+ul.bookmark_actions ul.move_panel
+{
+    list-style-type:none;
+    
+    position:absolute;
+    background:white;
+    padding:4px;
+    border:1px solid #444;
+    border-radius:3px;
+    display:none;
+}
+
+ul.bookmark_actions form.edit_panel
+{
+    list-style-type:none;
+    
+    position:absolute;
+    background:white;
+    padding:4px;
+    border:1px solid #444;
+    border-radius:3px;
+    width:270px;
+    text-align:left;
+    display:none;
+    right:-2px;
+}
+
+ul.bookmark_actions form.edit_panel label
+{
+    min-width:24px;
+    display:inline-block;
+}
+
+ul.bookmark_actions form.edit_panel input:last-child
+{
+    margin-top:6px;
+}
+
+
+ul.bookmark_actions ul.move_panel li:last-child
+{
+    margin-top:12px;
+    font-size:75%;
+}

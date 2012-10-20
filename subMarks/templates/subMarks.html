@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block html_head %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('subMarks.static', filename='subMarks.css')}}">
+    <script type="text/javascript">
+	function confirm_delete(title)
+	{
+		if(confirm('Are you sure you want to delete:\n"'+title+'" ?')){return true;}else{return false;}
+	}
+	</script>
+{% endblock %}
+
+{% block html_title %}subMarks{% endblock %}
+{% block title %}subMarks{% endblock %}
+
+{% block content %}
+    {% for b in bookmarks %}
+        <div class="bookmark">
+        <h2><a href="{{b[0]}}">{{b[1]}}</a></h2>
+        <h3>{{b[0]}}</h3>
+        <ul class="bookmark_actions">
+            <li>{%if b[3]%}<a href="{{url_for('subMarks.show_project', project=b[4])}}">{{b[3]}}</a>{%endif%}</li>
+            <li><a href="{{url_for('subMarks.delete_bookmark', bookmark_id=b[2])}}" onclick="return confirm_delete('{{b[1]}}')">Delete</a></li>
+            <li style="position:relative"><a href="#" onclick="this.nextSibling.style.display='block'; return false">Edit</a><form method="post" action="{{url_for('subMarks.edit_bookmark')}}" class="edit_panel">
+                <input type="hidden" name="bookmark_id" value="{{b[2]}}">
+                <label>title</label><input type="text" name="title" value="{{b[1]}}" size="40">
+                <label>url</label><input type="text" name="url" value="{{b[0]}}" size="40">
+                <input type="submit" value="save"> <input type="button" value="cancel" onclick="this.parentNode.style.display='none'; return false;">
+            </form>
+            </li>
+            <li><a href="#" onclick="this.nextSibling.style.display='block'; return false">Move</a><ul class="move_panel">
+                {% for p in projects %}
+                    <li><a href="{{url_for('subMarks.move_bookmark', bookmark_id=b[2], project_id=p[0])}}">{{p[1]}}</a></li>
+                {% endfor %}
+                    <li><a href="{{url_for('subMarks.move_bookmark', bookmark_id=b[2], project_id=0)}}">[none]</a></li>
+                    <li><a href="#" onclick="this.parentNode.parentNode.style.display='none'; return false;">cancel</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+    {% endfor %}
+    
+    <p>
+    {% if more_bookmarks %}
+        <a href="?p={{page+1}}">&lt; earlier bookmarks</a>
+    {% endif %}
+    {% if page > 0 %}
+        <a href="?p={{page-1}}">later bookmarks &gt;</a>
+    {% endif %}
+    </p>
+
+    
+{% endblock %}
+
+{% block sidebar %}
+<section>
+  <h3>Search</h3>
+  <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="24" onfocus="this.value=''" onblur="this.value='search'"> <label class="button"><input id="submit" type="submit" value="Search"></label></form>
+</section>
+<section>
+  <h3>Projects</h3>
+  <dl  id="projectList">
+    {% for p in projects %}
+    <dt><a href="{{url_for('subMarks.show_project', project=p[0])}}">{{p[1]}}</a></dt>
+    <dd>{{p[2]}} bookmarks <a href="javascript:{{bookmarklet(p[0])}}">#</a></dd>
+    {% endfor %}
+  <dt style="margin:8px 0px;">Create a new project</dt>
+  <dd><form method="post" action="{{url_for('subMarks.create_project')}}"><input type="text" name="project" size="24"> <label class="button"><input id="submit" type="submit" value="Create"></form></dd>
+  </dl>
+  
+  <h3><a href="javascript:{{bookmarklet()}}">Bookmarklet</a></h3>  
+</section>
+  
+{% endblock %}
+
+{% macro bookmarklet(project=None) -%}
+function subMark(){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location,t=d.title;try{if(!b) throw(0);d.title='[Saving...] '+d.title;z.setAttribute('src','http://system.subdimension.co.uk/subMarks/bm/?url='+encodeURIComponent(l.href)+'&amp;t='+encodeURIComponent(t){% if project %}+'&amp;p={{project}}'{% endif %});b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}}subMark();void(0)
+{%- endmacro %}

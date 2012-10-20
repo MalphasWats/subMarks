@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="{{ url_for('subMarks.static', filename='favicon.ico') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('subMarks.static', filename='subMarks.css') }}">
+
+<script type="text/javascript">
+	function confirm_delete(title)
+	{
+		if(confirm('Are you sure you want to delete:\n"'+title+'" ?')){return true;}else{return false;}
+	}
+</script>
+
+<title>subMarks</title>
+
+</head>
+
+<body>
+
+<header>
+<nav>
+	<ul>
+	   <li>
+	       <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="16" onfocus="this.value=''" onblur="this.value='search'"></form></li>
+	   <li><a href="{{ url_for('logout') }}">[logout]</a></li>
+	</ul>
+</nav>
+<h1>subMarks</h1>
+</header>
+
+<section id="page_content">
+{% for message in get_flashed_messages(True) %}
+    <div class="flashmessage {{message[0]}}">{{ message[1] }}</div>
+{% endfor %}
+
+{% block body %}{% endblock %}
+
+</section>
+
+<section id="sidebar">
+{% block sidebar %}{% endblock %}
+</section>
+
+</body>
+</html>

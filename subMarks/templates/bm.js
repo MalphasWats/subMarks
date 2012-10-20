@@ -1,0 +1,1 @@
+document.title='[Saved] '+document.title.substr(11)
