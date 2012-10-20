@@ -67,6 +67,8 @@ ul.bookmark_actions form.edit_panel
     text-align:left;
     display:none;
     right:-2px;
+    
+    z-index:10;
 }
 
 ul.bookmark_actions form.edit_panel label
