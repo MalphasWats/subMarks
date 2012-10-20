@@ -140,7 +140,7 @@ def search_for_bookmarks(terms):
                FROM sm_bookmarks b 
                LEFT JOIN sm_project_bookmarks pb ON pb.bookmark_id=b.bookmark_id
                LEFT JOIN sm_projects p ON p.project_id=pb.project_id
-               WHERE to_tsvector('english', title) @@ to_tsquery('english', %s)
+               WHERE to_tsvector('english', title) @@ plainto_tsquery('english', %s)
                ORDER BY timestamp DESC;"""
                
     bookmarks = idB.execute_query(query, (terms,))
