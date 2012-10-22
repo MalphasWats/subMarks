@@ -55,7 +55,7 @@
 {% block sidebar %}
 <section>
   <h3>Search</h3>
-  <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="24" onfocus="this.value=''" onblur="this.value='search'"> <label class="button"><input id="submit" type="submit" value="Search"></label></form>
+  <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="20" onfocus="this.value=''" onblur="this.value='search'"> <label class="button"><input id="submit" type="submit" value="Search"></label></form>
 </section>
 <section>
   <h3>Projects</h3>
@@ -65,7 +65,7 @@
     <dd>{{p[2]}} bookmarks <a href="javascript:{{bookmarklet(p[0])}}">#</a></dd>
     {% endfor %}
   <dt style="margin:8px 0px;">Create a new project</dt>
-  <dd><form method="post" action="{{url_for('subMarks.create_project')}}"><input type="text" name="project" size="24"> <label class="button"><input id="submit" type="submit" value="Create"></form></dd>
+  <dd><form method="post" action="{{url_for('subMarks.create_project')}}"><input type="text" name="project" size="20"> <label class="button"><input id="submit" type="submit" value="Create"></form></dd>
   </dl>
   
   <h3><a href="javascript:{{bookmarklet()}}">Bookmarklet</a></h3>  
