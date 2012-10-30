@@ -1,17 +1,12 @@
-from flask import (Blueprint, request, session, g, redirect, url_for, send_file,
-                   abort, render_template, flash, jsonify, Response, make_response)
-                   
-import database
+from flask import request, session, g, redirect, url_for, abort, render_template, flash, jsonify, Response, make_response
+
 import urllib2
 
 from instruments.core import public_endpoint
+
+from subMarks import blueprint
+import database
                    
-
-blueprint = Blueprint('subMarks', __name__, template_folder='templates', static_folder='static')
-
-LABEL = 'subMarks'
-ADMIN_LABEL = 'subMarks Admin'
-
 
 @blueprint.route('/')
 def index():
@@ -33,10 +28,6 @@ def index():
 def create_tables():
     database.create_tables()
     return redirect("%s#%s" % (request.referrer, blueprint.name))
-    
-    
-def get_admin_panel():
-    return render_template('widgets/admin_panel.html')
                             
                             
 @blueprint.route('/<project>/')
