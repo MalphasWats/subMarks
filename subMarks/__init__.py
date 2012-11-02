@@ -4,6 +4,7 @@ blueprint = Blueprint('subMarks', __name__, template_folder='templates', static_
 
 LABEL = 'subMarks'
 ADMIN_LABEL = 'subMarks Admin'
+ICON = 'bookmark-empty'
 
 import subMarks.core
 
