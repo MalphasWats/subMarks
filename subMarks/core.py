@@ -71,7 +71,7 @@ def resolve_url(url):
     except:
         return url
     if '?utm_source=' in url_resolved:
-        url_resolved = url_resolved[0:url_resolved.rfind('/')+1]
+        url_resolved = url_resolved[0:url_resolved.rfind('?utm_source')]
         
     return url_resolved
     
