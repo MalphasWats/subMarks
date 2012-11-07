@@ -1,0 +1,10 @@
+DSN = 'dbname=database user=username password=password' # instruments database dsn
+
+mail_server = 'pop.example.com'
+mail_username = 'submark@example.com' #the address you will email bookmarks to (ideally only used for this)
+mail_password = 'password'
+
+safe_receive_address = 'me@example.com' #the address you will email bookmarks *from*
+
+path_to_instruments = '/path/to/instruments' #where you installed instruments
+path_to_settings = '/path/to/mail_daemon_settings.py' #this file
