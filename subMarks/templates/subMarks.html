@@ -74,5 +74,5 @@
 {% endblock %}
 
 {% macro bookmarklet(project=None) -%}
-function subMark(){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location,t=d.title;try{if(!b) throw(0);d.title='[Saving...] '+d.title;z.setAttribute('src','http://system.subdimension.co.uk/subMarks/bm/?url='+encodeURIComponent(l.href)+'&amp;t='+encodeURIComponent(t){% if project %}+'&amp;p={{project}}'{% endif %});b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}}subMark();void(0)
+function subMark(){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location,t=d.title;try{if(!b) throw(0);d.title='[Saving...] '+d.title;z.setAttribute('src', l.protocol+'//system.subdimension.co.uk/subMarks/bm/?url='+encodeURIComponent(l.href)+'&amp;t='+encodeURIComponent(t){% if project %}+'&amp;p={{project}}'{% endif %});b.appendChild(z);}catch(e){alert('Please wait until the page has loaded.');}}subMark();void(0)
 {%- endmacro %}
