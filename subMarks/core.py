@@ -89,7 +89,7 @@ def edit_bookmark():
     return redirect(request.referrer)
     
     
-@blueprint.route('/search/', methods=['post'])
+@blueprint.route('/search/', methods=['get', 'post'])
 def search():
     search_string = request.form.get('search')
     
@@ -106,7 +106,7 @@ def search():
 @blueprint.route('/move/<int:bookmark_id>/<int:project_id>/')
 def move_bookmark(bookmark_id, project_id):
     database.move_bookmark(bookmark_id, project_id)
-    return redirect(request.referrer)
+    return redirect(url_for('subMarks.show_project', project=project_id))
     
     
 @blueprint.route('/delete/<int:bookmark_id>/')

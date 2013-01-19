@@ -55,7 +55,7 @@
 {% block sidebar %}
 <section>
   <h3>Search</h3>
-  <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="20" onfocus="this.value=''" onblur="this.value='search'"> <label class="button"><input id="submit" type="submit" value="Search"></label></form>
+  <form method="post" action="{{url_for('subMarks.search')}}"><input type="text" name="search" value="search" size="20" onfocus="this.value=''" onblur="if (this.value == '') this.value='search'"> <label class="button"><input id="submit" type="submit" value="Search"></label></form>
 </section>
 <section>
   <h3>Projects</h3>
