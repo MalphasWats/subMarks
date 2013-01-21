@@ -8,5 +8,4 @@ ICON = 'bookmark-empty'
 
 import subMarks.core
 
-def get_admin_panel():
-    return render_template('widgets/admin_panel.html')
+from subMarks.core import get_admin_panel

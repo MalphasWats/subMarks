@@ -33,6 +33,23 @@ def create_tables():
     );"""
 
     idB.execute_query(schema)
+    
+    
+def tables_created():
+    
+    query = """
+    SELECT relname FROM pg_class 
+    WHERE relname = 'sm_bookmarks'
+    OR relname = 'sm_projects'
+    OR relname = 'sm_project_bookmarks';
+    """
+    
+    result = idB.execute_query(query)
+    
+    if result:
+        return True
+        
+    return False
         
 
 def save_bookmark(url, title, project=None):

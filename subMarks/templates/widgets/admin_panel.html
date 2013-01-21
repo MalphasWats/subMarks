@@ -1,1 +1,6 @@
-<p><a href="{{url_for('subMarks.create_tables')}}">Create Tables</a></p>
+{% if not tables_created %}
+<p><a href="{{url_for('subMarks.create_tables')}}">Create Database Tables</a></p>
+{% else %}
+<p>subMarks database tables have been created.</p>
+{% endif %}
+

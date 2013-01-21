@@ -6,6 +6,8 @@ from instruments.core import public_endpoint
 
 from subMarks import blueprint
 import database
+
+from markdown import markdown
                    
 
 @blueprint.route('/')
@@ -121,3 +123,7 @@ def create_project():
     if project:
         database.create_project(project)
     return redirect(url_for('subMarks.index'))
+    
+    
+def get_admin_panel():
+    return render_template('widgets/admin_panel.html', tables_created=database.tables_created())
